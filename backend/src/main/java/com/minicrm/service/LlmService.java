@@ -40,38 +40,80 @@ public class LlmService {
         String systemPrompt = """
             You are an expert CRM data analyst. Translate the user's natural language customer segment description into a structured JSON filter rule.
             
-            The structure of the filter rule must be a single JSON object containing "and" or "or" operator arrays:
+            CRITICAL: The ONLY valid structure is a JSON object with an "and" or "or" key containing an array of leaf rules.
+            Each leaf rule MUST have exactly these three keys: "field", "op", "value".
+            
+            CORRECT example:
             {
               "and": [
-                { "field": "FIELD_NAME", "op": "OPERATOR", "value": VALUE }
+                { "field": "tier", "op": "==", "value": "Gold" },
+                { "field": "days_since_last_order", "op": ">=", "value": 30 }
               ]
             }
+            
+            WRONG (never use these formats):
+            - { "operator": "AND", "rules": [...] }  -- WRONG, use "and" not "operator"
+            - { "field": "x", "operator": "GT", "value": 1 }  -- WRONG, use "op": ">" not "operator": "GT"
+            - { "field": "x", "$gt": 1 }  -- WRONG, no MongoDB syntax
             
             Supported fields:
             - "name": string comparison
             - "city": string comparison (e.g. "Seattle")
             - "tier": Gold, Silver, Bronze
             - "consent": boolean (true/false)
-            - "days_since_last_order": integer (number of days since customer's last order)
-            - "total_spend": number (sum of all customer order amounts)
-            - "order_count": integer (total number of orders made)
-            - "category_affinity": string comparison (matches if they have bought items in this product category, e.g. "Coffee Beans", "Filters")
+            - "days_since_last_order": integer (days since last order)
+            - "total_spend": number (sum of all order amounts)
+            - "order_count": integer (total number of orders)
+            - "category_affinity": string (matches product category e.g. "Coffee Beans")
             
-            Supported operators:
-            - "==", "!=", ">", "<", ">=", "<=", "contains" (only for name, city, category_affinity)
+            Supported "op" values: "==", "!=", ">", "<", ">=", "<=", "contains"
             
-            Return ONLY the valid raw JSON object. Do not include markdown formatting or explanations.
+            Return ONLY the raw JSON object. No markdown, no explanation, no extra keys.
             """;
 
         String userPrompt = "Segment: \"" + description + "\"";
         
         try {
             String response = callGemini(systemPrompt, userPrompt, "segment_translation");
-            return parseJson(response);
+            Map<String, Object> parsed = parseJson(response);
+            if (!isValidFilterFormat(parsed)) {
+                log.warn("Gemini returned invalid filter format, falling back to mock. Got: {}", parsed);
+                return getMockSegmentFilter(description);
+            }
+            return parsed;
         } catch (Exception e) {
             log.warn("Gemini segment translation failed, falling back to mock: {}", e.getMessage());
             return getMockSegmentFilter(description);
         }
+    }
+
+    /**
+     * Validates that a filter rule uses the correct format expected by SegmentService.evaluateFilter().
+     * Valid: top-level key is "and" or "or", each child has "field", "op", "value".
+     */
+    @SuppressWarnings("unchecked")
+    private boolean isValidFilterFormat(Map<String, Object> filter) {
+        if (filter == null || filter.isEmpty()) return true; // empty = match all
+        // Must have "and" or "or" at the top level, OR be a direct leaf rule
+        if (filter.containsKey("and") || filter.containsKey("or")) {
+            String key = filter.containsKey("and") ? "and" : "or";
+            Object rules = filter.get(key);
+            if (!(rules instanceof List)) return false;
+            for (Object rule : (List<?>) rules) {
+                if (!(rule instanceof Map)) return false;
+                Map<String, Object> leaf = (Map<String, Object>) rule;
+                // Recursively check nested and/or
+                if (leaf.containsKey("and") || leaf.containsKey("or")) {
+                    if (!isValidFilterFormat(leaf)) return false;
+                } else {
+                    // Must be a leaf with field, op, value
+                    if (!leaf.containsKey("field") || !leaf.containsKey("op") || !leaf.containsKey("value")) return false;
+                }
+            }
+            return true;
+        }
+        // Could be a direct leaf rule
+        return filter.containsKey("field") && filter.containsKey("op") && filter.containsKey("value");
     }
 
     /**
