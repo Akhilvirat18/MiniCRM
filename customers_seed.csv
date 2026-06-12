@@ -1,0 +1,8 @@
+name,email,phone,city,tier,consent
+Alice Smith,alice@example.com,+15550101,Seattle,Gold,true
+Bob Johnson,bob@example.com,+15550102,Boston,Silver,true
+Charlie Brown,charlie@example.com,+15550103,New York,Bronze,false
+Diana Prince,diana@example.com,+15550104,Los Angeles,Gold,true
+Evan Wright,evan@example.com,+15550105,Boston,Silver,true
+Fiona Gallagher,akhil_bhupathi@srmap.edu.in,+15550106,Chicago,Gold,true
+George Costanza,akhilbhupathi12@gmail.com,+15550107,New York,Bronze,true

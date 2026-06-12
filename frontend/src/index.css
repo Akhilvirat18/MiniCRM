@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@theme {
+  --color-dark-950: #030303;
+  --color-dark-900: #09090b;
+  --color-dark-800: #18181b;
+  --color-dark-700: #27272a;
+  --color-dark-600: #3f3f46;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-950 text-zinc-100 font-sans antialiased selection:bg-indigo-500 selection:text-white;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-dark-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded hover:bg-zinc-700 transition-colors;
+}
+
+/* Glassmorphism utility classes */
+.glass-panel {
+  @apply bg-dark-900/60 backdrop-blur-md border border-zinc-800/80 rounded-xl;
+}
+.glass-card {
+  @apply bg-dark-800/40 backdrop-blur-sm border border-zinc-800/50 rounded-lg hover:border-zinc-700 transition-all duration-300;
+}
+.glow-accent {
+  box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+}
+.glow-success {
+  box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.15);
+}
