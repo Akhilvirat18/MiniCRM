@@ -1,5 +1,6 @@
 package com.minicrm.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -7,6 +8,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RestController
 @CrossOrigin(origins = "${frontend.url}")
 public class RootController {
+
+    @Value("${frontend.url}")
+    private String frontendUrl;
 
     @GetMapping(value = "/", produces = "text/html")
     public String index() {
@@ -101,10 +105,10 @@ public class RootController {
                     </div>
                     <h1>Mini CRM Engine</h1>
                     <p>The Spring Boot backend microservice is running successfully on port 8080 in dual memory-persistence mode.</p>
-                    <a href="http://localhost:5173" class="btn">Launch CRM Frontend Console (Port 5173)</a>
+                    <a href="%s" class="btn">Launch CRM Frontend Console</a>
                 </div>
             </body>
             </html>
-            """;
+            """.formatted(frontendUrl);
     }
 }
