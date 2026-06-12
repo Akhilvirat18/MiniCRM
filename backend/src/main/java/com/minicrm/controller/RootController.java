@@ -105,10 +105,10 @@ public class RootController {
                     </div>
                     <h1>Mini CRM Engine</h1>
                     <p>The Spring Boot backend microservice is running successfully on port 8080 in dual memory-persistence mode.</p>
-                    <a href="%s" class="btn">Launch CRM Frontend Console</a>
+                    <a href="{{FRONTEND_URL}}" class="btn">Launch CRM Frontend Console</a>
                 </div>
             </body>
             </html>
-            """.formatted(frontendUrl);
+            """.replace("{{FRONTEND_URL}}", frontendUrl);
     }
 }
