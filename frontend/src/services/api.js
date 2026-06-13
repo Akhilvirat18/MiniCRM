@@ -9,6 +9,29 @@ const client = axios.create({
   },
 });
 
+// ── Request interceptor — attach JWT on every request ────────────────────────
+client.interceptors.request.use((config) => {
+  const token = localStorage.getItem('minicrm_token');
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// ── Response interceptor — clear auth + redirect on 401 ──────────────────────
+client.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('minicrm_token');
+      localStorage.removeItem('minicrm_user');
+      // Force a full page reload so AuthContext re-reads (null token → login screen)
+      window.location.reload();
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const api = {
   // Ingestion & Basic Data
   getCustomers: () => client.get('/customers').then(res => res.data),
@@ -37,13 +60,13 @@ export const api = {
   // AI Campaign Agent Sessions
   getAgentSessions: () => client.get('/agent/sessions').then(res => res.data),
   getAgentSessionById: (id) => client.get(`/agent/sessions/${id}`).then(res => res.data),
-  initiateCampaignPlan: (goal, maxDiscountPercent) => 
+  initiateCampaignPlan: (goal, maxDiscountPercent) =>
     client.post('/agent/campaign-plan', { goal, constraints: { max_discount_percent: maxDiscountPercent } }).then(res => res.data),
-  refineCampaignPlan: (sessionId, editGoal) => 
+  refineCampaignPlan: (sessionId, editGoal) =>
     client.post(`/agent/sessions/${sessionId}/refine`, { goal: editGoal }).then(res => res.data),
-  approveCampaignPlan: (sessionId) => 
+  approveCampaignPlan: (sessionId) =>
     client.post(`/agent/sessions/${sessionId}/approve`).then(res => res.data),
-  
+
   // Explainability Logs
   getAuditLogs: () => client.get('/agent/audit-logs').then(res => res.data),
 };

@@ -1,50 +1,40 @@
 [
-  {
-    "customer_email": "alice@example.com",
-    "amount": 120.0,
-    "channel": "online",
-    "order_date": "2026-05-10T12:00:00",
-    "items": [
-      { "product_id": "prod_1", "category": "Coffee Beans", "quantity": 2, "price": 45.0 },
-      { "product_id": "prod_2", "category": "Filters", "quantity": 1, "price": 30.0 }
-    ]
-  },
-  {
-    "customer_email": "bob@example.com",
-    "amount": 65.5,
-    "channel": "retail",
-    "order_date": "2026-05-15T15:30:00",
-    "items": [
-      { "product_id": "prod_3", "category": "Mugs", "quantity": 2, "price": 20.0 },
-      { "product_id": "prod_2", "category": "Filters", "quantity": 1, "price": 25.5 }
-    ]
-  },
-  {
-    "customer_email": "diana@example.com",
-    "amount": 350.0,
-    "channel": "online",
-    "order_date": "2026-04-01T09:00:00",
-    "items": [
-      { "product_id": "prod_4", "category": "Coffee Machines", "quantity": 1, "price": 350.0 }
-    ]
-  },
-  {
-    "customer_email": "evan@example.com",
-    "amount": 90.0,
-    "channel": "online",
-    "order_date": "2026-05-28T10:45:00",
-    "items": [
-      { "product_id": "prod_1", "category": "Coffee Beans", "quantity": 2, "price": 45.0 }
-    ]
-  },
-  {
-    "customer_email": "fiona@example.com",
-    "amount": 250.0,
-    "channel": "online",
-    "order_date": "2026-03-15T11:00:00",
-    "items": [
-      { "product_id": "prod_1", "category": "Coffee Beans", "quantity": 4, "price": 50.0 },
-      { "product_id": "prod_2", "category": "Filters", "quantity": 2, "price": 25.0 }
-    ]
-  }
+  { "customer_email": "alice@example.com", "amount": 120.0, "channel": "online", "order_date": "2026-03-10T12:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 45.0 }, { "product_id": "p2", "category": "Filters", "quantity": 1, "price": 30.0 }] },
+  { "customer_email": "alice@example.com", "amount": 89.0, "channel": "online", "order_date": "2025-12-05T10:00:00", "items": [{ "product_id": "p3", "category": "Mugs", "quantity": 3, "price": 25.0 }] },
+  { "customer_email": "bob@example.com", "amount": 65.5, "channel": "retail", "order_date": "2026-04-15T15:30:00", "items": [{ "product_id": "p3", "category": "Mugs", "quantity": 2, "price": 20.0 }] },
+  { "customer_email": "bob@example.com", "amount": 45.0, "channel": "online", "order_date": "2025-11-20T09:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 1, "price": 45.0 }] },
+  { "customer_email": "diana@example.com", "amount": 350.0, "channel": "online", "order_date": "2025-10-01T09:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 350.0 }] },
+  { "customer_email": "evan@example.com", "amount": 90.0, "channel": "online", "order_date": "2026-04-28T10:45:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 45.0 }] },
+  { "customer_email": "fiona@example.com", "amount": 250.0, "channel": "online", "order_date": "2025-09-15T11:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 4, "price": 50.0 }] },
+  { "customer_email": "fiona@example.com", "amount": 75.0, "channel": "retail", "order_date": "2026-01-10T14:00:00", "items": [{ "product_id": "p5", "category": "Accessories", "quantity": 3, "price": 25.0 }] },
+  { "customer_email": "george@example.com", "amount": 35.0, "channel": "retail", "order_date": "2025-08-22T16:00:00", "items": [{ "product_id": "p2", "category": "Filters", "quantity": 1, "price": 35.0 }] },
+  { "customer_email": "hannah@example.com", "amount": 78.0, "channel": "online", "order_date": "2026-04-20T14:00:00", "items": [{ "product_id": "p5", "category": "Coffee Beans", "quantity": 1, "price": 45.0 }, { "product_id": "p2", "category": "Filters", "quantity": 1, "price": 33.0 }] },
+  { "customer_email": "ivan@example.com", "amount": 500.0, "channel": "online", "order_date": "2025-08-01T08:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 500.0 }] },
+  { "customer_email": "julia@example.com", "amount": 95.0, "channel": "online", "order_date": "2026-05-01T09:30:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 47.5 }] },
+  { "customer_email": "julia@example.com", "amount": 180.0, "channel": "online", "order_date": "2026-02-14T18:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 180.0 }] },
+  { "customer_email": "laura@example.com", "amount": 210.0, "channel": "online", "order_date": "2025-09-30T10:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 210.0 }] },
+  { "customer_email": "laura@example.com", "amount": 55.0, "channel": "retail", "order_date": "2026-03-18T11:30:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 1, "price": 55.0 }] },
+  { "customer_email": "marcus@example.com", "amount": 130.0, "channel": "online", "order_date": "2026-01-25T13:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 50.0 }, { "product_id": "p3", "category": "Mugs", "quantity": 1, "price": 30.0 }] },
+  { "customer_email": "natalie@example.com", "amount": 42.0, "channel": "retail", "order_date": "2025-11-10T15:00:00", "items": [{ "product_id": "p2", "category": "Filters", "quantity": 2, "price": 21.0 }] },
+  { "customer_email": "oscar@example.com", "amount": 88.0, "channel": "online", "order_date": "2026-04-05T09:00:00", "items": [{ "product_id": "p3", "category": "Mugs", "quantity": 2, "price": 22.0 }, { "product_id": "p2", "category": "Filters", "quantity": 2, "price": 22.0 }] },
+  { "customer_email": "priya@example.com", "amount": 420.0, "channel": "online", "order_date": "2025-07-20T08:30:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 420.0 }] },
+  { "customer_email": "priya@example.com", "amount": 110.0, "channel": "online", "order_date": "2026-05-10T12:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 55.0 }] },
+  { "customer_email": "quinn@example.com", "amount": 30.0, "channel": "retail", "order_date": "2025-10-14T16:30:00", "items": [{ "product_id": "p2", "category": "Filters", "quantity": 1, "price": 30.0 }] },
+  { "customer_email": "rachel@example.com", "amount": 145.0, "channel": "online", "order_date": "2026-02-28T11:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 50.0 }, { "product_id": "p5", "category": "Accessories", "quantity": 1, "price": 45.0 }] },
+  { "customer_email": "sam@example.com", "amount": 320.0, "channel": "online", "order_date": "2025-06-15T10:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 320.0 }] },
+  { "customer_email": "sam@example.com", "amount": 90.0, "channel": "online", "order_date": "2026-03-22T14:30:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 45.0 }] },
+  { "customer_email": "tina@example.com", "amount": 67.0, "channel": "retail", "order_date": "2026-04-01T10:00:00", "items": [{ "product_id": "p3", "category": "Mugs", "quantity": 2, "price": 20.0 }, { "product_id": "p2", "category": "Filters", "quantity": 1, "price": 27.0 }] },
+  { "customer_email": "victor@example.com", "amount": 480.0, "channel": "online", "order_date": "2025-05-10T09:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 480.0 }] },
+  { "customer_email": "victor@example.com", "amount": 100.0, "channel": "online", "order_date": "2026-01-15T11:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 50.0 }] },
+  { "customer_email": "wendy@example.com", "amount": 75.0, "channel": "retail", "order_date": "2026-03-05T13:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 1, "price": 50.0 }, { "product_id": "p3", "category": "Mugs", "quantity": 1, "price": 25.0 }] },
+  { "customer_email": "xavier@example.com", "amount": 40.0, "channel": "retail", "order_date": "2025-09-01T15:00:00", "items": [{ "product_id": "p2", "category": "Filters", "quantity": 2, "price": 20.0 }] },
+  { "customer_email": "yasmine@example.com", "amount": 560.0, "channel": "online", "order_date": "2025-04-20T10:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 560.0 }] },
+  { "customer_email": "yasmine@example.com", "amount": 135.0, "channel": "online", "order_date": "2026-04-30T09:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 3, "price": 45.0 }] },
+  { "customer_email": "zoe@example.com", "amount": 95.0, "channel": "online", "order_date": "2026-03-15T12:00:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 47.5 }] },
+  { "customer_email": "aaron@example.com", "amount": 390.0, "channel": "online", "order_date": "2025-08-10T08:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 390.0 }] },
+  { "customer_email": "bella@example.com", "amount": 82.0, "channel": "retail", "order_date": "2026-02-10T14:00:00", "items": [{ "product_id": "p3", "category": "Mugs", "quantity": 2, "price": 25.0 }, { "product_id": "p2", "category": "Filters", "quantity": 1, "price": 32.0 }] },
+  { "customer_email": "carlos@example.com", "amount": 50.0, "channel": "retail", "order_date": "2025-12-25T16:00:00", "items": [{ "product_id": "p2", "category": "Filters", "quantity": 2, "price": 25.0 }] },
+  { "customer_email": "diana.n@example.com", "amount": 440.0, "channel": "online", "order_date": "2025-06-01T10:00:00", "items": [{ "product_id": "p4", "category": "Coffee Machines", "quantity": 1, "price": 440.0 }] },
+  { "customer_email": "diana.n@example.com", "amount": 115.0, "channel": "online", "order_date": "2026-05-05T11:30:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 2, "price": 55.0 }, { "product_id": "p5", "category": "Accessories", "quantity": 1, "price": 5.0 }] },
+  { "customer_email": "elena@example.com", "amount": 72.0, "channel": "online", "order_date": "2026-04-12T09:30:00", "items": [{ "product_id": "p1", "category": "Coffee Beans", "quantity": 1, "price": 50.0 }, { "product_id": "p3", "category": "Mugs", "quantity": 1, "price": 22.0 }] }
 ]

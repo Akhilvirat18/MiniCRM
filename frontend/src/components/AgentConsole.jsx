@@ -178,10 +178,10 @@ function PlanCard({ plan, explainability, onApprove, approving, approved }) {
 
       {/* Approve Footer */}
       {!approved && (
-        <div className="p-4 border-t border-zinc-800 bg-dark-950/50 flex items-center justify-between gap-4">
+        <div className="p-4 border-t border-zinc-800 bg-dark-950/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-zinc-500 text-xs">Review the plan above and approve to create a campaign draft.</p>
           <button onClick={onApprove} disabled={approving}
-            className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-sm font-bold rounded-lg transition-all active:scale-95 whitespace-nowrap">
+            className="w-full sm:w-auto justify-center flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-sm font-bold rounded-lg transition-all active:scale-95 whitespace-nowrap">
             {approving
               ? <><div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Creating Draft...</>
               : <><ThumbsUp className="h-4 w-4" />Approve & Create Draft</>}
@@ -294,7 +294,7 @@ export default function AgentConsole() {
             </button>
           ))}
         </div>
-        <div className="flex gap-3">
+        <div className="flex flex-col md:flex-row gap-3">
           <input
             className="flex-1 bg-dark-950 border border-zinc-800 focus:border-indigo-500 rounded-lg px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none transition-colors"
             placeholder="Describe your marketing goal in plain English..."
@@ -302,7 +302,7 @@ export default function AgentConsole() {
             onChange={e => setGoal(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleSubmitGoal()}
           />
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between md:justify-start gap-2">
             <label className="text-xs text-zinc-500 whitespace-nowrap">Max Discount</label>
             <select value={maxDiscount} onChange={e => setMaxDiscount(Number(e.target.value))}
               className="bg-dark-950 border border-zinc-800 rounded-lg px-2 py-3 text-sm text-white outline-none">
@@ -310,7 +310,7 @@ export default function AgentConsole() {
             </select>
           </div>
           <button onClick={handleSubmitGoal} disabled={thinking || !goal.trim()}
-            className="px-5 py-3 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-sm font-bold rounded-lg transition-all active:scale-95 flex items-center gap-2 whitespace-nowrap">
+            className="w-full md:w-auto justify-center px-5 py-3 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-sm font-bold rounded-lg transition-all active:scale-95 flex items-center gap-2 whitespace-nowrap">
             {thinking
               ? <><div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Thinking...</>
               : <><Sparkles className="h-4 w-4" />Plan Campaign</>}

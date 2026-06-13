@@ -130,9 +130,9 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-wrap justify-between items-start gap-3">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-white">Performance Insights</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">Performance Insights</h1>
           <p className="text-zinc-400 text-sm mt-1">Real-time activation analytics and delivery logs.</p>
         </div>
         <button 
@@ -145,7 +145,7 @@ export default function Dashboard() {
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
         <div className="glass-panel p-5 relative overflow-hidden bg-gradient-to-br from-indigo-900/40 to-dark-900 border border-indigo-500/20 shadow-[0_0_25px_rgba(99,102,241,0.15)] group hover:shadow-[0_0_35px_rgba(99,102,241,0.25)] transition-all duration-300">
           <div className="flex justify-between items-start relative z-10">
             <div>
@@ -254,14 +254,14 @@ export default function Dashboard() {
       )}
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Cumulative Funnel */}
         <div className="glass-panel p-5 lg:col-span-1 flex flex-col justify-between">
           <div>
             <h3 className="text-md font-bold text-white mb-1">Conversion Funnel</h3>
             <p className="text-zinc-400 text-xs mb-4">Total performance drop-off aggregates.</p>
           </div>
-          <div className="h-[250px] w-full flex justify-center items-center">
+          <div className="h-[250px] w-full flex justify-center items-center min-w-0 overflow-hidden">
             {totalSent === 0 ? (
               <p className="text-zinc-500 text-sm">No campaigns sent yet.</p>
             ) : (
@@ -288,7 +288,7 @@ export default function Dashboard() {
         <div className="glass-panel p-5 lg:col-span-2">
           <h3 className="text-md font-bold text-white mb-1">Campaign Comparative Analytics</h3>
           <p className="text-zinc-400 text-xs mb-4">Sent vs Opened vs Clicked counts across campaigns.</p>
-          <div className="h-[250px] w-full">
+          <div className="h-[250px] w-full min-w-0 overflow-hidden">
             {campaignChartData.length === 0 ? (
               <div className="h-full flex flex-col justify-center items-center gap-2">
                 <p className="text-zinc-500 text-sm">No campaigns with sent data yet.</p>

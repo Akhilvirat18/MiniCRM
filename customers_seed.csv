@@ -1,8 +1,31 @@
 name,email,phone,city,tier,consent
 Alice Smith,alice@example.com,+15550101,Seattle,Gold,true
 Bob Johnson,bob@example.com,+15550102,Boston,Silver,true
-Charlie Brown,charlie@example.com,+15550103,New York,Bronze,false
 Diana Prince,diana@example.com,+15550104,Los Angeles,Gold,true
 Evan Wright,evan@example.com,+15550105,Boston,Silver,true
-Fiona Gallagher,akhil_bhupathi@srmap.edu.in,+15550106,Chicago,Gold,true
-George Costanza,akhilbhupathi12@gmail.com,+15550107,New York,Bronze,true
+Fiona Gallagher,fiona@example.com,+15550106,Chicago,Gold,true
+George Costanza,george@example.com,+15550107,New York,Bronze,true
+Hannah Lee,hannah@example.com,+15550108,Seattle,Silver,true
+Ivan Torres,ivan@example.com,+15550109,Chicago,Gold,true
+Julia Chen,julia@example.com,+15550110,San Francisco,Gold,true
+Kyle Park,kyle@example.com,+15550111,Boston,Bronze,false
+Laura Martinez,laura@example.com,+15550112,Miami,Gold,true
+Marcus Reed,marcus@example.com,+15550113,Austin,Silver,true
+Natalie Brooks,natalie@example.com,+15550114,Denver,Bronze,true
+Oscar Flynn,oscar@example.com,+15550115,Portland,Silver,true
+Priya Patel,priya@example.com,+15550116,San Francisco,Gold,true
+Quinn Adams,quinn@example.com,+15550117,New York,Bronze,true
+Rachel Kim,rachel@example.com,+15550118,Los Angeles,Silver,true
+Sam Walker,sam@example.com,+15550119,Chicago,Gold,true
+Tina Hughes,tina@example.com,+15550120,Seattle,Silver,true
+Uma Johansson,uma@example.com,+15550121,Boston,Bronze,false
+Victor Nair,victor@example.com,+15550122,Austin,Gold,true
+Wendy Scott,wendy@example.com,+15550123,Miami,Silver,true
+Xavier Diaz,xavier@example.com,+15550124,Denver,Bronze,true
+Yasmine Ali,yasmine@example.com,+15550125,New York,Gold,true
+Zoe Campbell,zoe@example.com,+15550126,San Francisco,Silver,true
+Aaron Ford,aaron@example.com,+15550127,Portland,Gold,true
+Bella Ross,bella@example.com,+15550128,Los Angeles,Silver,true
+Carlos Mendez,carlos@example.com,+15550129,Austin,Bronze,true
+Diana Nguyen,diana.n@example.com,+15550130,Chicago,Gold,true
+Elena Volkov,elena@example.com,+15550131,Seattle,Silver,true

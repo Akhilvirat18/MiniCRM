@@ -156,13 +156,13 @@ export default function CampaignManager() {
           {/* Channel picker */}
           <div>
             <label className="block text-zinc-400 text-xs font-semibold mb-2">Delivery Channel</label>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {CHANNELS.map(ch => (
                 <button key={ch.id} onClick={() => setForm(f => ({ ...f, channel: ch.id }))}
                   className={`p-3 rounded-lg border text-left transition-all ${form.channel === ch.id ? 'border-indigo-500 bg-indigo-500/10' : 'border-zinc-800 bg-dark-800/30 hover:border-zinc-700'}`}>
                   <div className="text-lg mb-1">{ch.icon}</div>
                   <div className="text-white text-xs font-semibold">{ch.label}</div>
-                  <div className="text-zinc-500 text-[10px]">{ch.desc}</div>
+                  <div className="text-zinc-500 text-[10px] hidden sm:block">{ch.desc}</div>
                 </button>
               ))}
             </div>
@@ -271,7 +271,7 @@ export default function CampaignManager() {
 
                 {/* A/B Variants */}
                 {selectedCampaign.variants?.length >= 2 && (
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                     {selectedCampaign.variants.map(v => (
                       <div key={v.variantId} className="p-3 bg-dark-800/40 rounded-lg border border-zinc-800">
                         <p className="text-indigo-400 text-[10px] font-bold uppercase mb-1">Variant {v.variantId}</p>
