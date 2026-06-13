@@ -108,20 +108,23 @@ export default function Dashboard() {
   const averageCTR      = totalSent > 0 ? ((totalClicked / totalSent) * 100).toFixed(1) : 0;
   const averageOpenRate = totalSent > 0 ? ((totalOpened  / totalSent) * 100).toFixed(1) : 0;
 
-  // Chart data for historical comparisons
-  const campaignChartData = campaigns.map(c => ({
-    name: c.name.replace('Campaign: ', '').substring(0, 15) + '...',
-    sent: c.metrics?.sent || 0,
-    opened: c.metrics?.opened || 0,
-    clicked: c.metrics?.clicked || 0,
-  }));
+  // Chart data — only include campaigns that actually sent to someone
+  const campaignChartData = campaigns
+    .filter(c => c.metrics?.sent > 0)
+    .slice(-10) // Show 10 most recent with real sends
+    .map(c => ({
+      name: c.name.replace('Campaign: ', '').substring(0, 15) + '...',
+      sent: c.metrics?.sent || 0,
+      opened: c.metrics?.opened || 0,
+      clicked: c.metrics?.clicked || 0,
+    }));
 
   // P1 Anomaly Detection: Check if any active campaign has underperforming stats
   const anomalies = campaigns.filter(c => {
     if (!c.metrics || c.metrics.sent < 5) return false;
     const clickRate = c.metrics.clicked / c.metrics.sent;
-    // Anomaly flag: Click rate lower than 2% for sent messages
-    return clickRate < 0.02 && c.status === 'Sent';
+    // Anomaly flag: Click rate lower than 2% for campaigns with real sends
+    return clickRate < 0.02 && c.status === 'Sent' && c.metrics.sent > 0;
   });
 
   return (
@@ -286,9 +289,10 @@ export default function Dashboard() {
           <h3 className="text-md font-bold text-white mb-1">Campaign Comparative Analytics</h3>
           <p className="text-zinc-400 text-xs mb-4">Sent vs Opened vs Clicked counts across campaigns.</p>
           <div className="h-[250px] w-full">
-            {campaigns.length === 0 ? (
-              <div className="h-full flex justify-center items-center">
-                <p className="text-zinc-500 text-sm">No campaigns available to chart.</p>
+            {campaignChartData.length === 0 ? (
+              <div className="h-full flex flex-col justify-center items-center gap-2">
+                <p className="text-zinc-500 text-sm">No campaigns with sent data yet.</p>
+                <p className="text-zinc-600 text-xs">Send a campaign to see comparative analytics.</p>
               </div>
             ) : (
               <ResponsiveContainer width="100%" height="100%">
