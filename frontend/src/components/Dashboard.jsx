@@ -347,11 +347,11 @@ export default function Dashboard() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {recentEvents.map((ev, i) => (
-              <div key={ev.id || i} className="p-3 bg-dark-800/30 border border-zinc-800/50 rounded-lg flex justify-between items-center">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-white">{ev.recipient}</span>
-                    <span className={`text-[9px] px-2 py-0.5 rounded font-mono uppercase font-bold
+              <div key={ev.id || i} className="p-3 bg-dark-800/30 border border-zinc-800/50 rounded-lg flex justify-between items-center gap-3">
+                <div className="space-y-1 min-w-0 flex-1">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-xs font-semibold text-white truncate">{ev.recipient}</span>
+                    <span className={`flex-shrink-0 text-[9px] px-2 py-0.5 rounded font-mono uppercase font-bold
                        ${ev.status === 'clicked'   ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : ''}
                        ${ev.status === 'opened'    ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : ''}
                        ${ev.status === 'read'      ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20' : ''}
@@ -362,9 +362,9 @@ export default function Dashboard() {
                       {ev.status}
                     </span>
                   </div>
-                  <p className="text-[10px] text-zinc-500 truncate max-w-[200px]">Campaign: {ev.campaign}</p>
+                  <p className="text-[10px] text-zinc-500 truncate w-full">Campaign: {ev.campaign}</p>
                 </div>
-                <span className="text-[10px] text-zinc-600 font-mono">{ev.time}</span>
+                <span className="text-[10px] text-zinc-600 font-mono flex-shrink-0">{ev.time}</span>
               </div>
             ))}
           </div>
