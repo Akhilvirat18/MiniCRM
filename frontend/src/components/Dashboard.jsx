@@ -112,8 +112,10 @@ export default function Dashboard() {
   const campaignChartData = campaigns
     .filter(c => c.metrics?.sent > 0)
     .slice(-10) // Show 10 most recent with real sends
-    .map(c => ({
-      name: c.name.replace('Campaign: ', '').substring(0, 15) + '...',
+    .map((c, i) => ({
+      id: c.id || i,
+      name: c.name,
+      displayName: c.name.replace('Campaign: ', '').substring(0, 15) + '...',
       sent: c.metrics?.sent || 0,
       opened: c.metrics?.opened || 0,
       clicked: c.metrics?.clicked || 0,
@@ -297,11 +299,23 @@ export default function Dashboard() {
             ) : (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={campaignChartData}>
-                  <XAxis dataKey="name" stroke="#71717a" fontSize={10} />
+                  <XAxis 
+                    dataKey="id" 
+                    stroke="#71717a" 
+                    fontSize={10} 
+                    tickFormatter={(id) => {
+                      const item = campaignChartData.find(c => c.id === id);
+                      return item ? item.displayName : id;
+                    }}
+                  />
                   <YAxis stroke="#71717a" fontSize={10} />
                   <Tooltip 
                     contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: '8px' }}
-                    labelStyle={{ color: '#fff' }}
+                    labelStyle={{ color: '#fff', fontSize: '12px', fontWeight: 'bold', marginBottom: '8px' }}
+                    labelFormatter={(id) => {
+                      const item = campaignChartData.find(c => c.id === id);
+                      return item ? item.name : id;
+                    }}
                   />
                   <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                   <Bar dataKey="sent" fill="#6366f1" name="Sent" radius={[4, 4, 0, 0]} />
