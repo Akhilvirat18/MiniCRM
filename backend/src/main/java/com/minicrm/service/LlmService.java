@@ -125,7 +125,12 @@ public class LlmService {
             
             Return a JSON object containing:
             1. "segment_name": Short name for the segment
-            2. "segment_filter": A JSON filter rule for database querying (same format as segment translation).
+            2. "segment_filter": MUST use this EXACT format — a JSON object with "and" or "or" key containing leaf rules with "field", "op", "value":
+               CORRECT: { "and": [ { "field": "tier", "op": "==", "value": "Gold" }, { "field": "days_since_last_order", "op": ">=", "value": 30 } ] }
+               WRONG:   { "operator": "AND", "rules": [...] }  or  { "field": "x", "operator": "GT" }
+               Supported fields: name, city, tier (Gold/Silver/Bronze), consent (true/false), days_since_last_order (int), total_spend (number), order_count (int), category_affinity (string)
+               Supported "op" values: "==", "!=", ">", "<", ">=", "<=", "contains"
+               NOTE: "between" is NOT supported — use two separate rules with >= and <= instead.
             3. "channel": Recommended channel ("sms", "email", "whatsapp", or "rcs")
             4. "message": { "template": "Main message with tokens", "variants": [ {"variant_id": "A", "template": "..."}, {"variant_id": "B", "template": "..."} ] }
                Available personalisation tokens: {{name}}, {{city}}, {{tier}}, {{last_purchased_category}}, {{days_since_last_order}}
@@ -143,7 +148,16 @@ public class LlmService {
 
         try {
             String response = callGemini(systemPrompt, userPrompt, "campaign_planning");
-            return parseJson(response);
+            Map<String, Object> plan = parseJson(response);
+
+            // Validate the segment_filter — if AI returned wrong format, replace with reliable mock
+            Map<String, Object> segmentFilter = (Map<String, Object>) plan.get("segment_filter");
+            if (segmentFilter == null || !isValidFilterFormat(segmentFilter)) {
+                log.warn("Gemini generateCampaignPlan returned invalid segment_filter format, replacing with mock. Got: {}", segmentFilter);
+                plan.put("segment_filter", getMockSegmentFilter(goal));
+            }
+
+            return plan;
         } catch (Exception e) {
             log.warn("Gemini campaign planning failed, falling back to mock: {}", e.getMessage());
             return getMockCampaignPlan(goal, maxDiscount);
